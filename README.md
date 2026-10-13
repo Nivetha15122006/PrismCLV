@@ -221,32 +221,6 @@ Once started, access the local Docker instance at:
 
 ---
 
-### 🤗 3. Hugging Face Spaces Deployment (Alternative)
-The Docker image is built to standard port `7860`, making it fully compatible with Hugging Face Spaces:
-1. Create a Space at [huggingface.co/spaces](https://huggingface.co/spaces) selecting the **Docker** SDK.
-2. Push repository code to the Hugging Face remote:
-```bash
-git remote add space https://huggingface.co/spaces/YOUR_USERNAME/PrismCLV
-git push space main
-```
-
----
-
-## 📊 Academic Evaluation Rubric Alignment
-
-| Rubric Evaluation Component | Implemented Methodology & Architecture in PrismCLV | Academic Marks | Status |
-| :--- | :--- | :---: | :---: |
-| **1. Problem Formulation & Scope** | E-commerce multi-touch attribution, survival churn timing, non-linear 365-day CLV in Indian Rupees (`₹`). | **06 / 06** | Full Marks |
-| **2. Real-World Dataset Preprocessing** | 30,000 UCI Online Retail II transactions, RFM aggregation, channel exposure matrices, duration engineering. | **08 / 08** | Full Marks |
-| **3. Advanced ML & Deep Learning Architectures** | Hybrid CatBoost Regressor ($R^2 = 0.995$) + PyTorch DeepSurv Cox PH Neural Network ($0.982$ ROC-AUC) + Multi-Touch Attribution Engine. | **10 / 10** | Full Marks |
-| **4. Experiment Tracking & Hyperparameter Tuning** | Optuna Bayesian optimization (50 trials) + MLflow tracking (parameters, metrics, model artifacts). | **08 / 08** | Full Marks |
-| **5. Model Diagnostics & Explainability** | SHAP TreeExplainer, Kaplan-Meier retention survival curves, pLTV calibration plots, DeepSurv confusion matrix. | **05 / 05** | Full Marks |
-| **6. Production Containerization & Cloud Deployment** | Production `Dockerfile`, fully deployed and running live on **AWS EC2 Cloud** (`t3.micro`, Docker container port 7860). | **08 / 08** | Full Marks |
-| **7. Software Engineering & Documentation** | Modular Python architecture (`src/`), centralized `config.yaml`, FastAPI UI + Swagger docs, comprehensive README. | **05 / 05** | Full Marks |
-| **Total Evaluation Score** | **Industry-grade MLOps & Advanced Machine Learning Project** | **50 / 50** | **100% Score** |
-
----
-
 ## 💻 Built By
 
 **Nivetha G** — M.Sc. AI & ML, Coimbatore Institute of Technology
