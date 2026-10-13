@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/style.css?v=3.1">
+  <link rel="stylesheet" href="/static/style.css?v=3.3">
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -18,15 +18,28 @@
 
     <!-- Top Navigation Bar -->
     <header class="app-header">
-      <!-- Brand Logo -->
-      <div class="brand-section">
-        <div class="brand-logo-icon">◈</div>
-        <div class="brand-info">
-          <div class="brand-title">
-            PrismCLV
-            <span class="live-badge">Enterprise v2.4</span>
+      <div class="header-top-row">
+        <!-- Brand Logo -->
+        <div class="brand-section">
+          <div class="brand-logo-icon">◈</div>
+          <div class="brand-info">
+            <div class="brand-title">
+              <span class="brand-name-text">PrismCLV</span>
+              <span class="live-badge"><span class="badge-dot"></span>Enterprise AI v2.4</span>
+            </div>
+            <div class="brand-tagline">
+              Deconstruct Multi-Touch Marketing Journeys &bull; Forecast 365-Day Customer Lifetime Value &bull; Real-Time Churn Survival AI
+            </div>
           </div>
-          <div class="brand-tagline">Deconstruct Multi-Touch Journeys, Forecast Customer Value</div>
+        </div>
+
+        <!-- Right Actions -->
+        <div class="header-actions">
+          <span class="currency-badge">Currency: INR (₹)</span>
+          <div class="system-status-indicator">
+            <span class="pulse-dot"></span>
+            <span>Inference Engine Online</span>
+          </div>
         </div>
       </div>
 
@@ -45,15 +58,6 @@
           <span>🔬</span> Executive Diagnostics
         </button>
       </nav>
-
-      <!-- Right Actions -->
-      <div class="header-actions">
-        <span class="currency-badge">Currency: INR (₹)</span>
-        <div class="system-status-indicator">
-          <span class="pulse-dot"></span>
-          <span>Inference Engine Online</span>
-        </div>
-      </div>
     </header>
 
     <!-- ========================================================
@@ -1032,6 +1036,6 @@
 
   </div>
 
-  <script src="/static/app.js?v=3.1"></script>
+  <script src="/static/app.js?v=3.3"></script>
 </body>
 </html>
