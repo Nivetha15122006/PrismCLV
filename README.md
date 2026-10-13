@@ -198,7 +198,14 @@ Hugging Face will automatically build the container and provide a live public HT
 
 ---
 
+## 🌐 Live AWS Cloud Deployment
 
+* **Live Interactive Web Application**: [http://3.110.37.186:7860/](http://3.110.37.186:7860/)
+* **Live API Documentation (Swagger)**: [http://3.110.37.186:7860/docs](http://3.110.37.186:7860/docs)
+* **Live Health Check**: [http://3.110.37.186:7860/health](http://3.110.37.186:7860/health)
+* **Cloud Infrastructure**: AWS EC2 `t3.micro` (Docker Containerized, `ap-south-1` Mumbai)
+
+---
 
 ## 💻 Built By
 
