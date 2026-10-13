@@ -1,14 +1,3 @@
----
-title: PrismCLV - Deconstruct Multi-Touch Journeys, Forecast Customer Value
-emoji: 🔮
-colorFrom: indigo
-colorTo: purple
-sdk: docker
-app_port: 7860
-pinned: false
-license: mit
----
-
 <div align="center">
 
 # 🔮 PrismCLV: Deconstruct Multi-Touch Journeys, Forecast Customer Value
