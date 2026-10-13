@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrismCLV — Deconstruct Multi-Touch Journeys, Forecast Customer Value</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css?v=3.1">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Outer Application Container -->
+  <div class="app-container">
+
+    <!-- Top Navigation Bar -->
+    <header class="app-header">
+      <!-- Brand Logo -->
+      <div class="brand-section">
+        <div class="brand-logo-icon">◈</div>
+        <div class="brand-info">
+          <div class="brand-title">
+            PrismCLV
+            <span class="live-badge">Enterprise v2.4</span>
+          </div>
+          <div class="brand-tagline">Deconstruct Multi-Touch Journeys, Forecast Customer Value</div>
+        </div>
+      </div>
+
+      <!-- Center Pill Navigation Tabs -->
+      <nav class="nav-pill-group">
+        <button class="nav-tab-btn active" data-tab="tab-customer-portfolio">
+          <span>👤</span> Customer & Portfolio Intelligence
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-ml-benchmarks">
+          <span>🤖</span> Advanced ML & Benchmarks
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-channel-trends">
+          <span>📈</span> Channel Contribution & Trends
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-diagnostics">
+          <span>🔬</span> Executive Diagnostics
+        </button>
+      </nav>
+
+      <!-- Right Actions -->
+      <div class="header-actions">
+        <span class="currency-badge">Currency: INR (₹)</span>
+        <div class="system-status-indicator">
+          <span class="pulse-dot"></span>
+          <span>Inference Engine Online</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========================================================
+         TAB 1: CUSTOMER & PORTFOLIO INTELLIGENCE
+         (Single Customer Simulator: Inputs ABOVE, Results & 4 Cards BELOW,
+          plus Batch Portfolio Analytics on the SAME PAGE!)
+         ======================================================== -->
+    <div id="tab-customer-portfolio" class="tab-content-pane active">
+
+      <!-- SECTION 1: SINGLE CUSTOMER PREDICTOR -->
+      <div class="form-card">
+        <div class="form-header">
+          <div class="form-title-group">
+            <h3>Customer Transaction Profile &amp; Touchpoints</h3>
+            <p>Input customer purchase history or select a persona archetype to forecast 365-day value and churn timing.</p>
+          </div>
+          <span style="font-size:0.8rem; font-weight:700; color:var(--primary); background:var(--primary-light); padding:4px 12px; border-radius:9999px;">
+            Single Customer Simulator
+          </span>
+        </div>
+
+        <!-- Quick Sample Inputs Bar for Instant Testing -->
+        <div class="quick-samples-bar">
+          <span class="quick-samples-label">⚡ Test Quick Sample:</span>
+          <button type="button" class="btn-sample-chip green" data-name="Priya Patel" data-spend="100" data-orders="1" data-recency="10" data-insta="1" data-goog="0" data-email="0" data-tik="0">🟢 ₹100 Spend · 10d (Safe)</button>
+          <button type="button" class="btn-sample-chip green" data-name="Vijay Verma" data-spend="2500" data-orders="4" data-recency="20" data-insta="1" data-goog="1" data-email="0" data-tik="0">🟢 ₹2,500 Spend · 20d (Safe)</button>
+          <button type="button" class="btn-sample-chip orange" data-name="Karan Malhotra" data-spend="250" data-orders="2" data-recency="100" data-insta="1" data-goog="1" data-email="0" data-tik="0">🟠 ₹250 Spend · 100d (Cooling)</button>
+          <button type="button" class="btn-sample-chip orange" data-name="Meera Sen" data-spend="2500" data-orders="4" data-recency="120" data-insta="0" data-goog="1" data-email="1" data-tik="0">🟠 ₹2,500 Spend · 120d (Cooling)</button>
+          <button type="button" class="btn-sample-chip red" data-name="Ravi Teja" data-spend="100" data-orders="1" data-recency="220" data-insta="1" data-goog="0" data-email="0" data-tik="0">🔴 ₹100 Spend · 220d (High Risk)</button>
+          <button type="button" class="btn-sample-chip red" data-name="Ananya Sharma" data-spend="18500" data-orders="12" data-recency="210" data-insta="0" data-goog="1" data-email="1" data-tik="0">🔴 ₹18,500 Spend · 210d (Whale At-Risk)</button>
+        </div>
+
+        <!-- 3-Column Input Grid -->
+        <div class="form-grid-3col">
+          <!-- Input 1: Customer Name -->
+          <div class="input-group">
+            <label class="input-label" for="owner-cust-name">Customer Name / Identifier</label>
+            <input type="text" id="owner-cust-name" class="input-text" placeholder="e.g. Ramesh Kumar or Shop_101" value="Ramesh Kumar">
+          </div>
+
+          <!-- Input 2: Historical Spend (Rupee prefix) -->
+          <div class="input-group">
+            <label class="input-label" for="owner-spend">Total Historical Spend (₹)</label>
+            <div class="input-box-wrapper">
+              <span class="rupee-prefix">₹</span>
+              <input type="number" id="owner-spend" class="input-text has-rupee" placeholder="e.g. 24500" value="24500" step="500">
+            </div>
+          </div>
+
+          <!-- Input 3: Orders Completed -->
+          <div class="input-group">
+            <label class="input-label" for="owner-orders">Completed Order Count</label>
+            <input type="number" id="owner-orders" class="input-text" placeholder="e.g. 8" value="8" min="1" max="100">
+          </div>
+        </div>
+
+        <!-- 2nd Row: Recency & Archetype Presets -->
+        <div class="form-grid-3col" style="margin-bottom:1rem;">
+          <!-- Input 4: Days Since Last Purchase -->
+          <div class="input-group">
+            <label class="input-label" for="owner-recency">Days Since Last Order (Recency)</label>
+            <input type="number" id="owner-recency" class="input-text" placeholder="e.g. 25" value="25" min="1" max="365">
+          </div>
+
+          <!-- Input 5: Presets Quick Select -->
+          <div class="input-group" style="grid-column: span 2;">
+            <label class="input-label" for="owner-preset-select">Or Select Customer Persona Archetype</label>
+            <select id="owner-preset-select" class="input-text">
+              <option value="custom">Custom Values</option>
+              <option value="vip" selected>VIP High Spender (Ramesh Kumar — ₹24,500 spend, 16 orders, 12d recency)</option>
+              <option value="at-risk">At-Risk High Spender (Ananya Sharma — ₹18,500 spend, inactive 210 days)</option>
+              <option value="regular">Regular Active Buyer (Vijay Verma — ₹4,800 spend, 6 orders, 35d recency)</option>
+              <option value="first-time">New First-Timer (Rahul Dev — ₹850 spend, 1 order, 18d recency)</option>
+              <option value="churned">Dormant Churned Customer (Pooja Nair — ₹1,200 spend, inactive 310 days)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Marketing Touchpoints Experienced -->
+        <label class="input-label" style="margin-bottom:0.4rem; display:block;">Attribution Channels Experienced by Customer</label>
+        <div class="channels-row">
+          <label class="channel-pill-checkbox active" id="ch-pill-insta">
+            <input type="checkbox" id="owner-ch-insta" checked> Instagram
+          </label>
+          <label class="channel-pill-checkbox active" id="ch-pill-google">
+            <input type="checkbox" id="owner-ch-google" checked> Google Search
+          </label>
+          <label class="channel-pill-checkbox active" id="ch-pill-email">
+            <input type="checkbox" id="owner-ch-email" checked> WhatsApp / Email
+          </label>
+          <label class="channel-pill-checkbox" id="ch-pill-tiktok">
+            <input type="checkbox" id="owner-ch-tiktok"> TikTok Ads
+          </label>
+        </div>
+
+        <!-- Option to Upload Single Customer Statement / Bill (CSV or PDF) -->
+        <div class="file-upload-box" id="module1-dropzone">
+          <div style="font-weight:700; font-size:0.92rem; color:var(--text-dark);">📄 Or Drag &amp; Drop Customer Invoice / Statement (CSV or PDF)</div>
+          <div style="font-size:0.8rem; color:var(--text-muted); margin:4px 0 8px 0;">Automatically extracts spend, orders, and recency into the form above</div>
+          <input type="file" id="module1-file-input" accept=".csv,.pdf" style="display:none;">
+          <button id="btn-browse-module1" class="btn-secondary" style="padding:5px 14px; font-size:0.82rem; margin:0 auto;">Browse File</button>
+          <div id="module1-file-status" style="margin-top:6px; font-weight:700; color:var(--primary); font-size:0.84rem;"></div>
+        </div>
+
+        <!-- Primary Trigger Button -->
+        <button id="btn-owner-predict" class="btn-primary" style="width:100%; padding:13px; font-size:1rem;">
+          🔮 Forecast Customer Lifetime Value &amp; Retention Timing (in ₹ Rupees)
+        </button>
+      </div>
+
+      <!-- RESULTS SECTION DIVIDER -->
+      <div class="results-section-divider">
+        <span>Strategic Performance Overview</span>
+        <hr>
+      </div>
+
+      <!-- 1. PLAIN-ENGLISH EXECUTIVE VERDICT CARD (BELOW INPUTS) -->
+      <div id="shop-owner-result-card" class="executive-verdict-card">
+        <div class="verdict-header">
+          <span class="verdict-emoji" id="owner-badge-emoji">🟢</span>
+          <div class="verdict-headline" id="owner-badge-headline">Ramesh Kumar is a Safe & Loyal VIP Customer!</div>
+        </div>
+        <div class="verdict-body" id="owner-desc-text">
+          • <strong>Expected 1-Year Revenue:</strong> Ramesh is forecasted to spend <strong>₹62,302</strong> in your shop over the next 12 months.<br>
+          • <strong>Retention Health:</strong> There is almost zero chance of him leaving (only <strong>0.8% churn risk</strong>).<br>
+          • <strong>Best Channel:</strong> Focus your communication on <strong>Instagram / WhatsApp</strong>.
+        </div>
+        <div class="verdict-action-callout" id="owner-action-box">
+          <strong>👉 Recommended Action:</strong> Avoid heavy margin-diluting discounts. Deploy an exclusive VIP loyalty perk or WhatsApp invitation to new arrivals. Expected extra sales: <strong>+₹21,805</strong>.
+        </div>
+      </div>
+
+      <!-- 2. THE 4 KPI METRIC CARDS (BELOW INPUTS) -->
+      <div class="metrics-grid-4col">
+        <!-- Metric 1 -->
+        <div class="kpi-card">
+          <div class="kpi-card-top">
+            <span class="kpi-card-title">Predicted 1-Yr Spend</span>
+            <div class="kpi-card-icon">💰</div>
+          </div>
+          <div class="kpi-card-val-group">
+            <span id="m1-val" class="kpi-card-val">₹62,302</span>
+            <span class="kpi-trend-badge green">+4.5%</span>
+          </div>
+          <div class="kpi-card-subtext">↗ +4.5% From previous period</div>
+        </div>
+
+        <!-- Metric 2 -->
+        <div class="kpi-card">
+          <div class="kpi-card-top">
+            <span class="kpi-card-title">Expected Churn Risk</span>
+            <div class="kpi-card-icon">⏱️</div>
+          </div>
+          <div class="kpi-card-val-group">
+            <span id="m2-val" class="kpi-card-val">0.8%</span>
+            <span class="kpi-trend-badge green">-15%</span>
+          </div>
+          <div class="kpi-card-subtext">↘ -15% Lower drop-off hazard</div>
+        </div>
+
+        <!-- Metric 3 -->
+        <div class="kpi-card">
+          <div class="kpi-card-top">
+            <span class="kpi-card-title">Retention Health</span>
+            <div class="kpi-card-icon">🛡️</div>
+          </div>
+          <div class="kpi-card-val-group">
+            <span id="m3-val" class="kpi-card-val">Safe (99%)</span>
+            <span class="kpi-trend-badge green">+5%</span>
+          </div>
+          <div class="kpi-card-subtext">Survival continuity over 365 days</div>
+        </div>
+
+        <!-- Metric 4 -->
+        <div class="kpi-card">
+          <div class="kpi-card-top">
+            <span class="kpi-card-title">Top Channel</span>
+            <div class="kpi-card-icon">📢</div>
+          </div>
+          <div class="kpi-card-val-group">
+            <span id="m4-val" class="kpi-card-val" style="font-size:1.55rem;">Instagram</span>
+            <span class="kpi-trend-badge green">+35%</span>
+          </div>
+          <div class="kpi-card-subtext">↗ +35.5% Estimated ROI uplift</div>
+        </div>
+      </div>
+
+      <!-- 2.5 Multi-Touch Marketing Channel Contribution Breakdown (Concept A - Exact ₹ Amounts) -->
+      <div style="margin-top: 1.25rem; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between;">
+        <div>
+          <h3 style="font-size: 1.05rem; font-weight: 800; color: #1e293b; margin: 0; display: flex; align-items: center; gap: 8px;">
+            <span>💰</span> Channel Revenue Attribution &amp; Future Share
+          </h3>
+          <p style="font-size: 0.8rem; color: #64748b; margin: 2px 0 0 0;">
+            Exact rupee contribution derived from Multi-Touch AI attribution across historical spend and future projected value.
+          </p>
+        </div>
+        <span class="badge-tag blue" style="font-size: 0.75rem;">Concept A: Exact ₹ Split</span>
+      </div>
+
+      <div class="channel-contribution-grid" id="channel-contribution-cards" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 1rem 0 1.5rem 0;">
+        <!-- Card 1: Instagram -->
+        <div class="channel-contrib-card active" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.15rem 1.15rem; box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04); display: flex; flex-direction: column; justify-content: space-between; min-height: 200px;">
+          <div>
+            <div class="channel-contrib-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+              <span class="channel-contrib-name" style="font-size: 0.95rem; font-weight: 700; color: #1e293b; display: flex; align-items: center; gap: 8px;">
+                <span style="font-size:1.2rem;">📸</span> Instagram
+              </span>
+              <span class="channel-contrib-pct" style="background:#fdf2f8; color:#e1306c; font-weight:800; border:1px solid rgba(225, 48, 108, 0.25); padding: 3px 9px; border-radius: 9999px; font-size: 0.72rem;">
+                35.0%
+              </span>
+            </div>
+            <div style="font-size:0.75rem; color:#64748b; font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">
+              Historical Rupee Credit
+            </div>
+            <div class="channel-contrib-amount" style="font-size: 1.45rem; font-weight: 800; color:#e1306c; letter-spacing: -0.03em; margin: 0.25rem 0 0.5rem 0; line-height: 1.2;">
+              ₹8,575.00
+            </div>
+            <div class="channel-contrib-future" style="font-size: 0.78rem; font-weight: 600; color: #047857; background: #ecfdf5; border: 1px solid #d1fae5; padding: 4px 9px; border-radius: 8px; display: inline-flex; align-items: center; gap: 4px; margin-bottom: 0.75rem;">
+              <span>🔮 1-Yr Forecast:</span> <strong>₹11,382.59</strong>
+            </div>
+          </div>
+          <div class="channel-contrib-role" style="font-size: 0.75rem; color: #64748b; line-height: 1.4; border-top: 1px solid #f1f5f9; padding-top: 8px; margin-top: auto;">
+            <div style="font-weight:700; color:#334155; margin-bottom:2px;">Top-of-Funnel Discovery &amp; Visual Proof</div>
+            <div style="font-size:0.72rem; color:#64748b;">Dynamic Catalog Stories &amp; Creator Lookbook Reels</div>
+          </div>
+        </div>
+
+        <!-- Card 2: Google Search -->
+        <div class="channel-contrib-card active" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.15rem 1.15rem; box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04); display: flex; flex-direction: column; justify-content: space-between; min-height: 200px;">
+          <div>
+            <div class="channel-contrib-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+              <span class="channel-contrib-name" style="font-size: 0.95rem; font-weight: 700; color: #1e293b; display: flex; align-items: center; gap: 8px;">
+                <span style="font-size:1.2rem;">🔍</span> Google Search
+              </span>
+              <span class="channel-contrib-pct" style="background:#eff6ff; color:#2563eb; font-weight:800; border:1px solid rgba(37, 99, 235, 0.25); padding: 3px 9px; border-radius: 9999px; font-size: 0.72rem;">
+                42.5%
+              </span>
+            </div>
+            <div style="font-size:0.75rem; color:#64748b; font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">
+              Historical Rupee Credit
+            </div>
+            <div class="channel-contrib-amount" style="font-size: 1.45rem; font-weight: 800; color:#2563eb; letter-spacing: -0.03em; margin: 0.25rem 0 0.5rem 0; line-height: 1.2;">
+              ₹10,412.50
+            </div>
+            <div class="channel-contrib-future" style="font-size: 0.78rem; font-weight: 600; color: #047857; background: #ecfdf5; border: 1px solid #d1fae5; padding: 4px 9px; border-radius: 8px; display: inline-flex; align-items: center; gap: 4px; margin-bottom: 0.75rem;">
+              <span>🔮 1-Yr Forecast:</span> <strong>₹13,821.72</strong>
+            </div>
+          </div>
+          <div class="channel-contrib-role" style="font-size: 0.75rem; color: #64748b; line-height: 1.4; border-top: 1px solid #f1f5f9; padding-top: 8px; margin-top: auto;">
+            <div style="font-weight:700; color:#334155; margin-bottom:2px;">High-Intent Query Closing &amp; Shopping Feeds</div>
+            <div style="font-size:0.72rem; color:#64748b;">Branded Search Query Ads &amp; Dynamic Search Retargeting</div>
+          </div>
+        </div>
+
+        <!-- Card 3: WhatsApp / Email -->
+        <div class="channel-contrib-card active" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.15rem 1.15rem; box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04); display: flex; flex-direction: column; justify-content: space-between; min-height: 200px;">
+          <div>
+            <div class="channel-contrib-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+              <span class="channel-contrib-name" style="font-size: 0.95rem; font-weight: 700; color: #1e293b; display: flex; align-items: center; gap: 8px;">
+                <span style="font-size:1.2rem;">💬</span> WhatsApp / Email
+              </span>
+              <span class="channel-contrib-pct" style="background:#ecfdf5; color:#10b981; font-weight:800; border:1px solid rgba(16, 185, 129, 0.25); padding: 3px 9px; border-radius: 9999px; font-size: 0.72rem;">
+                22.5%
+              </span>
+            </div>
+            <div style="font-size:0.75rem; color:#64748b; font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">
+              Historical Rupee Credit
+            </div>
+            <div class="channel-contrib-amount" style="font-size: 1.45rem; font-weight: 800; color:#10b981; letter-spacing: -0.03em; margin: 0.25rem 0 0.5rem 0; line-height: 1.2;">
+              ₹5,512.50
+            </div>
+            <div class="channel-contrib-future" style="font-size: 0.78rem; font-weight: 600; color: #047857; background: #ecfdf5; border: 1px solid #d1fae5; padding: 4px 9px; border-radius: 8px; display: inline-flex; align-items: center; gap: 4px; margin-bottom: 0.75rem;">
+              <span>🔮 1-Yr Forecast:</span> <strong>₹7,317.38</strong>
+            </div>
+          </div>
+          <div class="channel-contrib-role" style="font-size: 0.75rem; color: #64748b; line-height: 1.4; border-top: 1px solid #f1f5f9; padding-top: 8px; margin-top: auto;">
+            <div style="font-weight:700; color:#334155; margin-bottom:2px;">Direct Re-orders &amp; VIP Nurture</div>
+            <div style="font-size:0.72rem; color:#64748b;">Personalized VIP Early-Access Drops &amp; Replenishment Triggers</div>
+          </div>
+        </div>
+
+        <!-- Card 4: TikTok Ads -->
+        <div class="channel-contrib-card inactive" style="background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 12px; padding: 1.15rem 1.15rem; display: flex; flex-direction: column; justify-content: space-between; min-height: 200px; opacity: 0.6;">
+          <div>
+            <div class="channel-contrib-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+              <span class="channel-contrib-name" style="font-size: 0.95rem; font-weight: 700; color: #64748b; display: flex; align-items: center; gap: 8px;">
+                <span style="font-size:1.2rem;">🎵</span> TikTok Ads
+              </span>
+              <span class="channel-contrib-pct" style="background:#f1f5f9; color:#94a3b8; font-weight:700; padding: 3px 9px; border-radius: 9999px; font-size: 0.72rem;">
+                Inactive
+              </span>
+            </div>
+            <div style="font-size:0.75rem; color:#64748b; font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">
+              Historical Rupee Credit
+            </div>
+            <div class="channel-contrib-amount" style="font-size: 1.45rem; font-weight: 800; color:#94a3b8; letter-spacing: -0.03em; margin: 0.25rem 0 0.5rem 0; line-height: 1.2;">
+              ₹0.00
+            </div>
+            <div class="channel-contrib-future" style="font-size: 0.78rem; font-weight: 600; color: #64748b; background: #f1f5f9; border: 1px solid #e2e8f0; padding: 4px 9px; border-radius: 8px; display: inline-flex; align-items: center; gap: 4px; margin-bottom: 0.75rem;">
+              <span>🔮 1-Yr Forecast:</span> <strong>₹0.00</strong>
+            </div>
+          </div>
+          <div class="channel-contrib-role" style="font-size: 0.75rem; color: #64748b; line-height: 1.4; border-top: 1px solid #f1f5f9; padding-top: 8px; margin-top: auto;">
+            <div style="font-weight:700; color:#334155; margin-bottom:2px;">Viral Discovery &amp; Creator Influencer Lift</div>
+            <div style="font-size:0.72rem; color:#64748b;">Short-Form Unboxing Videos &amp; Limited-Time Creator Spark Ads</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.6 Future Marketing Trends & Investment Playbook -->
+      <div class="investment-playbook-card" id="investment-playbook-section" style="margin-top: 1.25rem;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.75rem;">
+          <div>
+            <h3 style="font-size: 1.05rem; font-weight: 800; color: #1e293b; margin: 0; display: flex; align-items: center; gap: 8px;">
+              <span>🚀</span> Future Advertising Trends &amp; Investment Playbook
+            </h3>
+            <p style="font-size: 0.8rem; color: #64748b; margin: 2px 0 0 0;">
+              AI prescriptive recommendation on where to allocate next ad budget and which campaign playbook to launch.
+            </p>
+          </div>
+          <span class="badge-tag green" style="font-size: 0.75rem;">AI Optimization Engine</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 18px;" id="playbook-columns-grid">
+          <!-- Col 1: Forward Revenue Trajectory -->
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 1rem;">
+            <div style="font-size: 0.82rem; font-weight: 800; color: #0f172a; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+              <span>📈</span> Expected Future Trend
+            </div>
+            <div id="playbook-trend-text" style="font-size: 0.82rem; color: #334155; line-height: 1.5;">
+              Customer exhibits healthy growth trajectory. Forward 12-month value projected to grow steadily.
+            </div>
+          </div>
+
+          <!-- Col 2: Recommended Budget Split -->
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 1rem;">
+            <div style="font-size: 0.82rem; font-weight: 800; color: #0f172a; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+              <span>🎯</span> Recommended Ad Budget Split
+            </div>
+            <div id="playbook-budget-bars" style="display: flex; flex-direction: column; gap: 6px;">
+              <!-- Budget bars rendered dynamically by app.js -->
+            </div>
+          </div>
+
+          <!-- Col 3: Next Campaign Playbook -->
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 1rem;">
+            <div style="font-size: 0.82rem; font-weight: 800; color: #0f172a; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+              <span>💡</span> Next Advertising Campaign
+            </div>
+            <div id="playbook-campaign-content" style="font-size: 0.8rem; color: #334155; line-height: 1.45;">
+              <!-- Next campaign details rendered dynamically by app.js -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. VISUAL CHARTS (Sales Trajectory & Retention Donut) -->
+      <div class="charts-grid-2col">
+        <!-- Sales Line Chart -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title-main">Sales Figures Trajectory</div>
+              <div class="chart-title-sub">12-Month projected customer revenue pacing and distribution.</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px; font-size:0.8rem; font-weight:700;">
+              <span style="display:flex; align-items:center; gap:5px; color:#2563eb;">
+                <span style="width:8px; height:8px; border-radius:50%; background:#2563eb;"></span> Marketing Sales
+              </span>
+              <span style="display:flex; align-items:center; gap:5px; color:#8b5cf6;">
+                <span style="width:8px; height:8px; border-radius:50%; background:#8b5cf6;"></span> Baseline Sales
+              </span>
+            </div>
+          </div>
+          <div style="height: 250px; position:relative;">
+            <canvas id="museSalesChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Retention Donut Chart -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title-main">Retention Performance</div>
+              <div class="chart-title-sub">Customer cohort retention & revenue share breakdown.</div>
+            </div>
+            <span style="font-size:0.8rem; font-weight:700; color:var(--text-muted);">Annual Total</span>
+          </div>
+
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:18px;">
+            <div style="width: 160px; height: 160px; position:relative; flex-shrink:0;">
+              <canvas id="museDonutChart"></canvas>
+            </div>
+
+            <!-- Legend List -->
+            <div class="donut-legend-list" style="flex:1;">
+              <div class="donut-legend-row">
+                <div class="donut-legend-left">
+                  <span class="legend-dot" style="background:#8b5cf6;"></span>
+                  <span class="legend-label">Returning Users</span>
+                </div>
+                <div class="donut-legend-right">
+                  <span class="legend-amount">₹3,19,200</span>
+                  <span class="legend-pct">35%</span>
+                </div>
+              </div>
+
+              <div class="donut-legend-row">
+                <div class="donut-legend-left">
+                  <span class="legend-dot" style="background:#312e81;"></span>
+                  <span class="legend-label">Dropped Users</span>
+                </div>
+                <div class="donut-legend-right">
+                  <span class="legend-amount">₹1,36,800</span>
+                  <span class="legend-pct">15%</span>
+                </div>
+              </div>
+
+              <div class="donut-legend-row">
+                <div class="donut-legend-left">
+                  <span class="legend-dot" style="background:#6366f1;"></span>
+                  <span class="legend-label">High-LTV Users</span>
+                </div>
+                <div class="donut-legend-right">
+                  <span class="legend-amount">₹1,82,400</span>
+                  <span class="legend-pct">20%</span>
+                </div>
+              </div>
+
+              <div class="donut-legend-row">
+                <div class="donut-legend-left">
+                  <span class="legend-dot" style="background:#c4b5fd;"></span>
+                  <span class="legend-label">Permanent Users</span>
+                </div>
+                <div class="donut-legend-right">
+                  <span class="legend-amount">₹1,36,800</span>
+                  <span class="legend-pct">15%</span>
+                </div>
+              </div>
+
+              <div class="donut-legend-row">
+                <div class="donut-legend-left">
+                  <span class="legend-dot" style="background:#1e1b4b;"></span>
+                  <span class="legend-label">Membership Users</span>
+                </div>
+                <div class="donut-legend-right">
+                  <span class="legend-amount">₹1,36,800</span>
+                  <span class="legend-pct">15%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. TECHNICAL MLOPS BREAKDOWN -->
+      <div class="chart-card" style="margin-bottom:2.5rem;">
+        <div class="chart-header">
+          <div>
+            <div class="chart-title-main">Technical MLOps & Model Inferences</div>
+            <div class="chart-title-sub">Underlying CatBoost regressor outputs and DeepSurv hazard probabilities.</div>
+          </div>
+          <span class="badge-tag green" id="tech-tier-pill">Low Risk Segment</span>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:14px;">
+          <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:0.9rem;">
+            <div style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">PREDICTED 365-D pLTV</div>
+            <div id="tech-pltv-val" style="font-size:1.35rem; font-weight:800; color:var(--text-dark);">₹62,302.00</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">CatBoost Non-Linear Trees</div>
+          </div>
+
+          <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:0.9rem;">
+            <div style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">DEEPSURV HAZARD SCORE</div>
+            <div id="tech-hazard-val" style="font-size:1.35rem; font-weight:800; color:var(--text-dark);">0.0080</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Cox Proportional Hazards Loss</div>
+          </div>
+
+          <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:0.9rem;">
+            <div style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">RETENTION CONTINUITY</div>
+            <div id="tech-survival-val" style="font-size:1.35rem; font-weight:800; color:var(--text-dark);">99.20%</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Kaplan-Meier Survival Rate</div>
+          </div>
+
+          <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:0.9rem;">
+            <div style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">ESTIMATED ROI UPLIFT</div>
+            <div id="tech-roi-val" style="font-size:1.35rem; font-weight:800; color:var(--primary);">+35.5%</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Multi-Touch Incrementality</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           SECTION 2: BATCH PORTFOLIO ANALYTICS (ON SAME FIRST PAGE!)
+           ======================================================== -->
+      <div class="results-section-divider">
+        <span>Portfolio Batch Analytics (Bulk CSV / PDF Processing)</span>
+        <hr>
+      </div>
+
+      <div class="chart-card" style="margin-bottom:1.5rem;">
+        <div class="chart-header">
+          <div>
+            <div class="chart-title-main">Upload Customer Cohort (CSV or PDF)</div>
+            <div class="chart-title-sub">Evaluate entire customer rosters at once to calculate store-wide Value-at-Risk.</div>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button id="btn-load-demo-cohort" class="btn-secondary">🚀 Load Real Retail Cohort (350 Customers)</button>
+            <button id="btn-download-csv-tmpl" class="btn-secondary">📥 Download CSV Template</button>
+          </div>
+        </div>
+
+        <div class="file-upload-box" id="batch-dropzone-area">
+          <div style="font-size:2rem; margin-bottom:4px;">📂</div>
+          <div style="font-weight:800; color:var(--text-dark); margin-bottom:2px;">Drag and drop your customer CSV or PDF file here</div>
+          <div style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">Supports CSV spreadsheets or PDF invoices and statements</div>
+          <input type="file" id="batch-csv-pdf-input" accept=".csv,.pdf" style="display:none;">
+          <button id="btn-browse-batch" class="btn-secondary" style="margin:0 auto; padding:6px 16px;">Browse File</button>
+          <div id="batch-file-info" style="margin-top:8px; font-weight:800; color:var(--primary); font-size:0.86rem;"></div>
+        </div>
+
+        <button id="btn-run-batch-scoring" class="btn-primary" style="width:100%; padding:12px; font-size:0.96rem;">
+          ⚡ Run Portfolio Scoring & Value-at-Risk Analysis (in ₹ Rupees)
+        </button>
+      </div>
+
+      <!-- Batch Macro KPIs (Rendered on Same First Page) -->
+      <div id="batch-results-wrap" style="display:none;">
+        <div class="metrics-grid-4col" style="grid-template-columns: repeat(5, 1fr);">
+          <div class="kpi-card">
+            <span class="kpi-card-title">Total Portfolio Value</span>
+            <div class="kpi-card-val-group">
+              <span id="b-val-total" class="kpi-card-val" style="font-size:1.6rem;">₹8,87,367</span>
+            </div>
+            <div class="kpi-card-subtext">365-day cumulative pLTV</div>
+          </div>
+
+          <div class="kpi-card">
+            <span class="kpi-card-title">Revenue Exposed to Churn</span>
+            <div class="kpi-card-val-group">
+              <span id="b-val-risk" class="kpi-card-val" style="color:var(--danger); font-size:1.6rem;">₹16,805</span>
+            </div>
+            <div class="kpi-card-subtext" id="b-val-risk-accounts">69 high-risk accounts</div>
+          </div>
+
+          <div class="kpi-card">
+            <span class="kpi-card-title">High-Risk Accounts</span>
+            <div class="kpi-card-val-group">
+              <span id="b-val-high-count" class="kpi-card-val" style="font-size:1.6rem;">69</span>
+              <span class="kpi-trend-badge red">19.7%</span>
+            </div>
+            <div class="kpi-card-subtext">Need urgent retention outreach</div>
+          </div>
+
+          <div class="kpi-card">
+            <span class="kpi-card-title">Average Churn Risk</span>
+            <div class="kpi-card-val-group">
+              <span id="b-val-churn" class="kpi-card-val" style="font-size:1.6rem;">20.8%</span>
+            </div>
+            <div class="kpi-card-subtext">Cohort baseline hazard</div>
+          </div>
+
+          <div class="kpi-card">
+            <span class="kpi-card-title">Avg Customer Value</span>
+            <div class="kpi-card-val-group">
+              <span id="b-val-avg" class="kpi-card-val" style="font-size:1.6rem;">₹2,535</span>
+            </div>
+            <div class="kpi-card-subtext">Mean 1-year forecasted spend</div>
+          </div>
+        </div>
+
+        <!-- Scored Customer Table -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title-main">Individual Customer Predictions & Prescriptive Actions</div>
+              <div class="chart-title-sub">Real-time inference scores across CatBoost and DeepSurv survival models.</div>
+            </div>
+            <button id="btn-download-scored-csv" class="btn-primary" style="padding:6px 16px; font-size:0.82rem;">📥 Export Scored CSV</button>
+          </div>
+          <div class="table-wrapper">
+            <table class="enterprise-table">
+              <thead>
+                <tr>
+                  <th>Customer ID</th>
+                  <th>Spend (₹)</th>
+                  <th>Orders</th>
+                  <th>Recency</th>
+                  <th>Predicted pLTV (₹)</th>
+                  <th>Churn Risk</th>
+                  <th>Risk Segment</th>
+                  <th>Best Channel</th>
+                  <th>Recommended Action Plan</th>
+                </tr>
+              </thead>
+              <tbody id="batch-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================
+         TAB 2: ADVANCED ML TECHNIQUES & MODEL BENCHMARKS
+         ======================================================== -->
+    <div id="tab-ml-benchmarks" class="tab-content-pane">
+
+      <div style="margin-bottom:1.5rem;">
+        <h2 style="font-size:1.45rem; font-weight:800; color:var(--text-dark); letter-spacing:-0.02em;">
+          🤖 Advanced ML Techniques & Model Benchmarking
+        </h2>
+        <p style="font-size:0.9rem; color:var(--text-muted);">
+          Rigorous benchmarking comparing all evaluated architectures for revenue forecasting, retention survival, and multi-touch attribution.
+        </p>
+      </div>
+
+      <!-- Verdict Banner -->
+      <div style="background:#f0fdf4; border:1.5px solid #86efac; border-radius:var(--radius-lg); padding:1.3rem 1.6rem; margin-bottom:1.75rem;">
+        <h3 style="font-size:1.15rem; font-weight:800; color:#15803d; margin-bottom:0.35rem;">
+          🏆 Executive Verdict: Which Model is Best for What?
+        </h3>
+        <p style="font-size:0.9rem; color:#166534; line-height:1.6;">
+          Because revenue forecasting and churn timing are fundamentally distinct mathematical problems, <strong>no single model can solve both</strong>. Our hybrid MLOps pipeline deploys the proven best model for each task:
+        </p>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:12px; margin-top:1rem;">
+          <div style="background:#ffffff; border:1px solid #bbf7d0; border-radius:10px; padding:1rem;">
+            <div style="font-size:0.72rem; font-weight:800; color:#15803d; text-transform:uppercase;">👑 BEST FOR REVENUE FORECASTING</div>
+            <div style="font-size:1.15rem; font-weight:800; color:#0f172a; margin:3px 0;">CatBoost Regressor</div>
+            <div style="font-size:0.82rem; color:#475569;">Achieves near-perfect <strong>R² = 0.995</strong> and <strong>MAE = ₹431.26</strong>, outperforming Linear Regression & Random Forests on non-linear retail spend spikes.</div>
+          </div>
+
+          <div style="background:#ffffff; border:1px solid #bbf7d0; border-radius:10px; padding:1rem;">
+            <div style="font-size:0.72rem; font-weight:800; color:#15803d; text-transform:uppercase;">👑 BEST FOR CHURN & RETENTION TIMING</div>
+            <div style="font-size:1.15rem; font-weight:800; color:#0f172a; margin:3px 0;">PyTorch DeepSurv Neural Network</div>
+            <div style="font-size:0.82rem; color:#475569;">Delivers <strong>95.1% Accuracy</strong> and <strong>0.982 ROC-AUC</strong>. Models <em>when</em> the customer will leave across 365 days using Cox PH loss.</div>
+          </div>
+
+          <div style="background:#ffffff; border:1px solid #bbf7d0; border-radius:10px; padding:1rem;">
+            <div style="font-size:0.72rem; font-weight:800; color:#15803d; text-transform:uppercase;">👑 BEST FOR AD BUDGET ALLOCATION</div>
+            <div style="font-size:1.15rem; font-weight:800; color:#0f172a; margin:3px 0;">Multi-Touch AI Attribution Engine</div>
+            <div style="font-size:0.82rem; color:#475569;">Uncovers <strong>+86.7% Instagram lift</strong> and <strong>+33.3% TikTok lift</strong> ignored by flawed Last-Touch heuristics.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Benchmark Leaderboard Table -->
+      <div class="chart-card" style="margin-bottom:1.75rem;">
+        <div class="chart-title-main" style="margin-bottom:0.75rem;">📋 Comprehensive ML Benchmark Comparison Table</div>
+        <div class="table-wrapper">
+          <table class="enterprise-table">
+            <thead>
+              <tr>
+                <th>Model Architecture</th>
+                <th>Category</th>
+                <th>Target Objective</th>
+                <th>Key Evaluation Metric</th>
+                <th>Score</th>
+                <th>Latency</th>
+                <th>Verdict / Best Use Case</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:#f0fdf4;">
+                <td><strong>CatBoost Regressor</strong> 👑</td>
+                <td>Gradient Boosted Trees</td>
+                <td>365-Day Revenue Value (₹)</td>
+                <td>R² & MAE</td>
+                <td><strong>R² = 0.995 (MAE: ₹431.26)</strong></td>
+                <td>&lt; 2ms</td>
+                <td><span class="badge-tag green">👑 Best for Money Forecasting</span></td>
+              </tr>
+              <tr style="background:#f0fdf4;">
+                <td><strong>PyTorch DeepSurv</strong> 👑</td>
+                <td>Deep Neural Network</td>
+                <td>Churn Hazard & Timeline</td>
+                <td>ROC-AUC & Accuracy</td>
+                <td><strong>AUC = 0.982 (Acc: 95.1%)</strong></td>
+                <td>&lt; 3ms</td>
+                <td><span class="badge-tag green">👑 Best for Churn & Retention Timing</span></td>
+              </tr>
+              <tr style="background:#f0fdf4;">
+                <td><strong>Multi-Touch AI Engine</strong> 👑</td>
+                <td>Incrementality Attribution</td>
+                <td>Channel Credit Split</td>
+                <td>Discovery Lift</td>
+                <td><strong>+86.7% Instagram Lift</strong></td>
+                <td>&lt; 1ms</td>
+                <td><span class="badge-tag green">👑 Best for Ad Budget Allocation</span></td>
+              </tr>
+              <tr>
+                <td>Random Forest Regressor</td>
+                <td>Ensemble Trees</td>
+                <td>365-Day Revenue Value (₹)</td>
+                <td>R² & MAE</td>
+                <td>R² = 0.932 (MAE: ₹920.40)</td>
+                <td>~15ms</td>
+                <td><span style="color:#64748b; font-size:0.8rem;">Sub-optimal on extreme high-spend VIPs</span></td>
+              </tr>
+              <tr>
+                <td>Linear / Ridge Regression</td>
+                <td>Linear Model</td>
+                <td>365-Day Revenue Value (₹)</td>
+                <td>R²</td>
+                <td>R² = 0.784 (MAE: ₹1,840.10)</td>
+                <td>&lt; 1ms</td>
+                <td><span style="color:#64748b; font-size:0.8rem;">Cannot capture non-linear RFM trends</span></td>
+              </tr>
+              <tr>
+                <td>Binary Logistic Regression</td>
+                <td>Classification Baseline</td>
+                <td>Churn vs Active</td>
+                <td>Accuracy & AUC</td>
+                <td>AUC = 0.824 (Acc: 81.2%)</td>
+                <td>&lt; 1ms</td>
+                <td><span style="color:#64748b; font-size:0.8rem;">Cannot model duration or time-to-churn</span></td>
+              </tr>
+              <tr>
+                <td>Last-Touch Heuristic</td>
+                <td>Static Rule Heuristic</td>
+                <td>Last Channel Attribution</td>
+                <td>Attribution Share</td>
+                <td>Google Search 45% (Biased)</td>
+                <td>&lt; 1ms</td>
+                <td><span class="badge-tag red">Severely penalizes top-of-funnel discovery</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Benchmarking Visual Charts -->
+      <div class="charts-grid-2col">
+        <div class="chart-card">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title-main">Model Validation Performance (R² & AUC)</div>
+              <div class="chart-title-sub">Validation scores across tested ML architectures.</div>
+            </div>
+          </div>
+          <div style="height:250px;">
+            <canvas id="benchModelChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title-main">Multi-Touch Channel Attribution Lift</div>
+              <div class="chart-title-sub">How AI corrects Last-Touch heuristic under-crediting.</div>
+            </div>
+          </div>
+          <div style="height:250px;">
+            <canvas id="benchAttribChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================
+         TAB 3: CHANNEL CONTRIBUTION & SALES TRENDS (NEW MODULE!)
+         (Interactive Time Horizon Switcher: 3M, 6M, 1Y;
+          Sales Trajectory Graph, Channel Contribution Bar Graph,
+          and In-Depth Explanation & Decision Advice!)
+         ======================================================== -->
+    <div id="tab-channel-trends" class="tab-content-pane">
+
+      <div style="margin-bottom:1.25rem;">
+        <h2 style="font-size:1.45rem; font-weight:800; color:var(--text-dark); letter-spacing:-0.02em;">
+          📈 Multi-Channel Contribution & Sales Trends
+        </h2>
+        <p style="font-size:0.9rem; color:var(--text-muted);">
+          Evaluate gross sales revenue pacing across <strong>3 Months</strong>, <strong>6 Months</strong>, or <strong>Yearly</strong> horizons, and pinpoint exact channel contributions across Instagram, Google Search, WhatsApp/Email, and TikTok.
+        </p>
+      </div>
+
+      <!-- Interactive Time-Horizon Switcher Bar -->
+      <div class="horizon-toggle-bar">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:0.85rem; font-weight:800; color:var(--text-dark);">Select Analysis Time Horizon:</span>
+        </div>
+        <div class="horizon-pills">
+          <button class="horizon-pill-btn active" data-horizon="yearly">📅 Yearly (12 Months)</button>
+          <button class="horizon-pill-btn" data-horizon="6months">📅 6 Months (H2)</button>
+          <button class="horizon-pill-btn" data-horizon="3months">📅 3 Months (Q4)</button>
+        </div>
+        <div style="font-size:0.82rem; font-weight:700; color:var(--text-muted);" id="horizon-summary-label">
+          Total Sales: <strong style="color:var(--text-dark);">₹8,87,367.00</strong>
+        </div>
+      </div>
+
+      <!-- 4 Quick Channel Stat Cards for Selected Horizon -->
+      <div class="channel-stat-cards">
+        <!-- Instagram -->
+        <div class="channel-stat-card">
+          <div class="channel-stat-title">📸 Instagram Contribution</div>
+          <div class="channel-stat-val" id="ch-stat-insta-val">₹3,10,578</div>
+          <div class="channel-stat-share" id="ch-stat-insta-pct">35.0% of Total Revenue</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Role: Primary Discovery Driver</div>
+        </div>
+
+        <!-- Google Search -->
+        <div class="channel-stat-card">
+          <div class="channel-stat-title">🔍 Google Search Contribution</div>
+          <div class="channel-stat-val" id="ch-stat-google-val">₹2,83,957</div>
+          <div class="channel-stat-share" id="ch-stat-google-pct">32.0% of Total Revenue</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Role: High-Intent Purchase Closer</div>
+        </div>
+
+        <!-- WhatsApp / Email -->
+        <div class="channel-stat-card">
+          <div class="channel-stat-title">💬 WhatsApp / Email Contribution</div>
+          <div class="channel-stat-val" id="ch-stat-email-val">₹1,86,347</div>
+          <div class="channel-stat-share" id="ch-stat-email-pct">21.0% of Total Revenue</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Role: VIP Retention & Repeat Orders</div>
+        </div>
+
+        <!-- TikTok -->
+        <div class="channel-stat-card">
+          <div class="channel-stat-title">🎵 TikTok Contribution</div>
+          <div class="channel-stat-val" id="ch-stat-tiktok-val">₹1,06,485</div>
+          <div class="channel-stat-share" id="ch-stat-tiktok-pct">12.0% of Total Revenue</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Role: Viral Awareness & Reach</div>
+        </div>
+      </div>
+
+      <!-- Dual Visual Analytics for Time Horizon -->
+      <div class="charts-grid-2col">
+        <!-- Chart 1: Overall Sales Trend Line Chart -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title-main" id="trend-line-title">Overall Sales Revenue Trajectory (12 Months)</div>
+              <div class="chart-title-sub">Monthly sales revenue progression in Indian Rupees (₹).</div>
+            </div>
+            <span class="badge-tag green" id="trend-growth-badge">+115.4% Period Growth</span>
+          </div>
+          <div style="height:260px; position:relative;">
+            <canvas id="trendSalesChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Chart 2: Channel Contribution Breakdown Bar Chart -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title-main">Channel Revenue Contribution (₹)</div>
+              <div class="chart-title-sub">Attributed conversion value across marketing channels.</div>
+            </div>
+            <span style="font-size:0.8rem; font-weight:700; color:var(--primary);">AI Incrementality Split</span>
+          </div>
+          <div style="height:260px; position:relative;">
+            <canvas id="trendChannelChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detailed Explanation & Decision Advice Box -->
+      <div class="decision-callout-card">
+        <div class="decision-title">
+          <span>🧠 Executive Marketing Decision Analysis (<span id="decision-horizon-title">Yearly (12 Months)</span>)</span>
+        </div>
+        <div class="decision-text" id="decision-analysis-text">
+          • <strong>Primary Acquisition Driver:</strong> <strong>Instagram</strong> drove the largest share of net customer revenue (<strong>₹3,10,578 / 35.0%</strong>), serving as the primary touchpoint for initial product discovery and catalog interest.<br>
+          • <strong>Conversion Harvesting:</strong> <strong>Google Search</strong> captured <strong>₹2,83,957 (32.0%)</strong>, functioning as the high-intent closer when shoppers searched for brand terms after seeing social ads.<br>
+          • <strong>Retention Engine:</strong> <strong>WhatsApp / Email</strong> generated <strong>₹1,86,347 (21.0%)</strong> with virtually zero ad spend cost, delivering the highest return on investment (ROAS) via automated repeat order reminders.<br>
+          • <strong>Next Quarter Ad Allocation Recommendation:</strong> Reallocate 15% of underperforming Google generic search budget into <strong>Instagram Reel ads</strong> to boost top-of-funnel discovery, while maintaining direct WhatsApp automated reminders for existing buyers.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================
+         TAB 4: EXECUTIVE MLOPS DIAGNOSTICS & EXPLAINABILITY
+         ======================================================== -->
+    <div id="tab-diagnostics" class="tab-content-pane">
+
+      <div style="margin-bottom:1.5rem;">
+        <h2 style="font-size:1.45rem; font-weight:800; color:var(--text-dark); letter-spacing:-0.02em;">
+          🔬 Executive MLOps Diagnostics & Model Explainability
+        </h2>
+        <p style="font-size:0.9rem; color:var(--text-muted);">
+          Five diagnostic visualizations validating model soundness, retention survival curves, 
+          channel incrementality lift, SHAP feature rankings, and error calibration.
+        </p>
+      </div>
+
+      <!-- Grid of Diagnostic Visual Cards -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(460px, 1fr)); gap:18px; margin-bottom:1.75rem;">
+
+        <!-- Card 1: Kaplan-Meier -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title-main">1. Kaplan-Meier Customer Retention Survival Curve</div>
+              <div class="chart-title-sub">Cumulative probability that a customer remains active over 365 days.</div>
+            </div>
+          </div>
+          <div style="background:#f8fafc; border-radius:10px; padding:10px; text-align:center; margin-bottom:10px;">
+            <img src="/static/1_kaplan_meier_survival.png" alt="Kaplan-Meier Retention Curve" style="max-width:100%; height:auto; border-radius:6px;">
+          </div>
+          <div style="font-size:0.84rem; color:#475569; line-height:1.5; background:#f1f5f9; padding:9px 12px; border-radius:8px;">
+            💡 <strong>Key Finding:</strong> Highlights the critical 180-day retention inflection point where active shoppers stabilize at an 82.4% survival rate.
+          </div>
+        </div>
+
+        <!-- Card 2: Attribution Comparison -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title-main">2. Multi-Touch Attribution vs. Heuristic Baseline</div>
+              <div class="chart-title-sub">Comparing Last-Touch heuristic rules against AI incrementality weights.</div>
+            </div>
+          </div>
+          <div style="background:#f8fafc; border-radius:10px; padding:10px; text-align:center; margin-bottom:10px;">
+            <img src="/static/2_attribution_comparison.png" alt="Channel Attribution Comparison" style="max-width:100%; height:auto; border-radius:6px;">
+          </div>
+          <div style="font-size:0.84rem; color:#475569; line-height:1.5; background:#f1f5f9; padding:9px 12px; border-radius:8px;">
+            💡 <strong>Key Finding:</strong> Last-Touch heuristic over-credits Google Search (45%), while our AI engine uncovers <strong>+86.7% Instagram discovery lift</strong> and <strong>+33.3% TikTok lift</strong>.
+          </div>
+        </div>
+
+        <!-- Card 3: SHAP Feature Importance -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title-main">3. SHAP Global Feature Importance Rankings</div>
+              <div class="chart-title-sub">Quantifies mean absolute impact on 365-day predicted pLTV in ₹ Rupees.</div>
+            </div>
+          </div>
+          <div style="background:#f8fafc; border-radius:10px; padding:10px; text-align:center; margin-bottom:10px;">
+            <img src="/static/3_shap_summary.png" alt="SHAP Feature Importance" style="max-width:100%; height:auto; border-radius:6px;">
+          </div>
+          <div style="font-size:0.84rem; color:#475569; line-height:1.5; background:#f1f5f9; padding:9px 12px; border-radius:8px;">
+            💡 <strong>Key Finding:</strong> Historical monetary spend is the primary revenue predictor (62.4%), followed by purchase frequency and recency.
+          </div>
+        </div>
+
+        <!-- Card 4: Calibration Curve -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title-main">4. CatBoost pLTV Prediction Calibration (Actual vs. Predicted)</div>
+              <div class="chart-title-sub">Linear agreement showing how accurately predicted spend matches actual revenue in ₹.</div>
+            </div>
+          </div>
+          <div style="background:#f8fafc; border-radius:10px; padding:10px; text-align:center; margin-bottom:10px;">
+            <img src="/static/4_pltv_calibration.png" alt="pLTV Calibration Curve" style="max-width:100%; height:auto; border-radius:6px;">
+          </div>
+          <div style="font-size:0.84rem; color:#475569; line-height:1.5; background:#f1f5f9; padding:9px 12px; border-radius:8px;">
+            💡 <strong>Key Finding:</strong> CatBoost delivers near-perfect linear fit with <strong>R² = 0.995</strong> and a mean absolute error of only <strong>₹431.26</strong>.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Card 5: Full Width Confusion Matrix -->
+      <div class="chart-card">
+        <div class="chart-header">
+          <div>
+            <div class="chart-title-main">5. PyTorch DeepSurv Churn Hazard Classification Matrix</div>
+            <div class="chart-title-sub">Confusion matrix evaluating churn retention predictions at a 0.5 hazard threshold.</div>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:center; background:#f8fafc; border-radius:10px; padding:12px; margin-bottom:10px;">
+          <img src="/static/5_churn_confusion_matrix.png" alt="Churn Confusion Matrix" style="max-width:520px; height:auto; border-radius:6px;">
+        </div>
+        <div style="font-size:0.84rem; color:#475569; line-height:1.5; background:#f1f5f9; padding:9px 12px; border-radius:8px;">
+          💡 <strong>Key Finding:</strong> DeepSurv achieves <strong>95.1% classification accuracy</strong> and <strong>0.982 ROC-AUC</strong>, minimizing wasted marketing budget on false retention alarms.
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="/static/app.js?v=3.1"></script>
+</body>
+</html>

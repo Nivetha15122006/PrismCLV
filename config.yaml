@@ -1,0 +1,79 @@
+# PrismCLV Model & Pipeline Configuration File
+# Project: Advanced Machine Learning Multi-Touch Attribution & Survival pLTV Engine
+
+project:
+  name: "PrismCLV"
+  version: "2.4.0"
+  description: "Multi-Touch Marketing Attribution, 365-Day pLTV Forecasting & Survival Analysis"
+  currency: "INR (₹)"
+
+data:
+  raw_dataset_path: "data/real_online_retail_30k.csv"
+  processed_features_path: "data/processed_features.csv"
+  test_size: 0.20
+  random_state: 42
+  observation_window_days: 365
+  churn_inactivity_threshold_days: 180
+
+features:
+  numerical_cols:
+    - "recency_days"
+    - "frequency"
+    - "monetary"
+  channel_cols:
+    - "has_instagram"
+    - "has_google"
+    - "has_email"
+    - "has_tiktok"
+  target_pltv: "pltv_365"
+  target_survival:
+    duration: "duration_days"
+    event: "churn_event"
+
+models:
+  catboost_pltv:
+    objective: "MAE"
+    loss_function: "MAE"
+    eval_metric: "R2"
+    iterations: 300
+    learning_rate: 0.045
+    depth: 6
+    l2_leaf_reg: 3.0
+    random_seed: 42
+    save_path: "models/catboost_pltv.cbm"
+    optuna_tuning:
+      n_trials: 15
+      depth_range: [4, 8]
+      lr_range: [0.01, 0.1]
+
+  deepsurv_survival:
+    architecture: "DeepSurv Neural Network"
+    loss: "Cox Proportional Hazards Negative Partial Log-Likelihood"
+    input_dim: 7
+    hidden_dim: 32
+    dropout: 0.1
+    learning_rate: 0.01
+    epochs: 100
+    batch_size: 64
+    optimizer: "Adam"
+    save_path: "models/deepsurv_model.pt"
+
+  attribution_engine:
+    algorithm: "Multi-Touch Shapley / Incrementality Model"
+    baseline_weights:
+      google_search: 0.34
+      instagram: 0.28
+      tiktok: 0.20
+      email: 0.18
+
+experiment_tracking:
+  framework: "MLflow"
+  backend_store_uri: "sqlite:///mlflow.db"
+  experiment_name: "AttribCLV_Lab_Evaluation"
+
+deployment:
+  framework: "FastAPI"
+  host: "0.0.0.0"
+  local_port: 8000
+  docker_port: 7860
+  cloud_provider: "Hugging Face Spaces (Docker SDK)"
