@@ -198,18 +198,7 @@ Hugging Face will automatically build the container and provide a live public HT
 
 ---
 
-## 📊 Academic Evaluation Rubric Alignment
 
-| S.No | Rubric Component | Max Marks | Implementation Evidence |
-| :---: | :--- | :---: | :--- |
-| **1** | **Data Engineering & Visualization** | **08** | • Real UCI Online Retail II dataset (30,000 transactions).<br>• Advanced RFM aggregation, survival duration formatting, and multi-touch channel flags.<br>• 5 complete analytical visualizations (SHAP, Kaplan-Meier, Attribution, Calibration, Confusion Matrix). |
-| **2** | **Advanced Modeling & Pipeline Optimization** | **10** | • Hybrid CatBoost + PyTorch DeepSurv Cox PH Neural Network.<br>• Optuna Bayesian hyperparameter optimization.<br>• MLflow experiment tracking with logged metrics, parameters, and artifacts. |
-| **3** | **Benchmarking & Comparative Analysis** | **10** | • Rigorous comparison against 4 baseline architectures.<br>• Quantitative leaderboard table evaluating $R^2$, MAE, ROC-AUC, Accuracy, Latency.<br>• In-depth error analysis and residual calibration curves. |
-| **4** | **Deployment & Containerization** | **08** | • Production FastAPI web application with real-time inference and CSV/PDF parsing (4 Marks).<br>• Dockerized container configuration ready for Hugging Face Spaces / AWS (4 Marks). |
-| **5** | **Documentation & Deliverables** | **04** | • Fully documented modular code structure in `src/`.<br>• Complete configuration files ([config.yaml](file:///c:/Projects/AML%20CAT/config.yaml), [requirements.txt](file:///c:/Projects/AML%20CAT/requirements.txt), [Dockerfile](file:///c:/Projects/AML%20CAT/Dockerfile)).<br>• Comprehensive README with architecture diagrams and mathematical formulations. |
-| **TOTAL** | | **40 / 40** | **Fully Satisfied Across All Rubric Dimensions** |
-
----
 
 ## 💻 Built By
 
